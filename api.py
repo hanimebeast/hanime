@@ -3,12 +3,12 @@
 
 from flask import Flask, jsonify, render_template
 import requests
-import secrets
+
 
 def jsongen(url):
     import requests
     import json
-    headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32)}
+    headers = {"X-Signature-Version": "web2","X-Signature": 'aa341d8f50afb003e10a65d790b3a742f7134be4382d891aff2f751b07d3fa6e'}
     res = requests.get(url, headers=headers)
     y = json.loads(res.text)
     return y
