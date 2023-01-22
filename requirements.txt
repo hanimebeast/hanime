@@ -1,0 +1,4 @@
+requests
+secrets
+Flask
+Gunicorn
