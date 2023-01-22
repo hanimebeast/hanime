@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}trending | HanimeBeast{% endblock %}
+{% block content %}
+
+
+<div class="row sm-6 gy-3 my-3">
+    {% for v in videos %}
+    <div class="col-sm-3">
+    <div class="card bg-dark text-white">
+        <a href="/video/{{ v['id'] }}"> <img src={{ v['cover_url'] }} class="card-img-top" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ v['name'] }}</h5>
+                <p class="card-text">Views: {{ v['views'] }} </p>
+            </div>
+        </a>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+<button onclick="history.back()" class="btn btn-success btn-lg"><i class="fa-solid fa-backward-step"></i></button>
+<a href="{{ next_page }}" class="btn btn-success btn-lg"><i class="fa-solid fa-forward-step"></i></a>
+{% endblock %}
