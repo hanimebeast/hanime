@@ -16,8 +16,8 @@ def jsongen(url):
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return render_template('index.html')
+def index():
+    return "hanime beast mode on!"
 
 @app.route('/trending/<page>', methods=["GET"])
 def trending(page):
@@ -40,6 +40,6 @@ def trending(page):
     return jsonify({'results': jsondata, 'page': page}),200
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     # serve(app, host="127.0.0.1", port=8080)
-    app.run(host="127.0.0.1", port=8080)
+    #app.run(host="127.0.0.1", port=8080)
