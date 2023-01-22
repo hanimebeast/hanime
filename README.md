@@ -1,6 +1,6 @@
 # hanimeapi
 
-live on => [page 1](https://hanime.onrender.com/trending/1)
+live on => [Click](https://hanime.onrender.com/api/trending/0)
 ### Routes
 -  ``` /api/trending/{page} ``` trending page
 - ``` /api/video/{id}``` video detail
