@@ -1,4 +1,3 @@
 requests
-secrets
 Flask
 Gunicorn
