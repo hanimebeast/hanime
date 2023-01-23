@@ -1,6 +1,4 @@
 
-# A very simple Flask Hello World app for you to get started with...
-
 from flask import Flask, jsonify, render_template
 import requests
 import secrets
@@ -14,11 +12,11 @@ def jsongen(url):
     return y
 
 
-def gettrending(page):
+def gettrending(time,page):
     jsondata  = []
     page = page
-    trending_url = "https://hanime.tv/api/v8/browse-trending?time=month&page="
-    url = trending_url + str(page)
+    trending_url = "https://hanime.tv/api/v8/browse-trending?time={time}&page={page}".format(time=time,page=str(page))
+    url = trending_url
     urldata = jsongen(url)
     for x in urldata["hentai_videos"]:
         json_data = {'id': x['id'] , 'name' : x['name'], 'cover_url': x['cover_url'], 'views' : x['views'], 'link': '/api/video/{id}'.format(id=str(x['id']))}
@@ -43,11 +41,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/trending/<page>', methods = ["GET"])
-def trending_page(page):
-    videos = gettrending(page)
-    next_page = '/trending/{page}'.format(page=str(int(page)+1))
-    return render_template('trending.html',videos=videos, next_page = next_page)
+@app.route('/trending/<time>/<page>', methods = ["GET"])
+def trending_page(time,page):
+    videos = gettrending(time,page)
+    next_page = '/trending/{time}/{page}'.format(time=time,page=str(int(page)+1))
+    return render_template('trending.html',videos=videos, next_page = next_page, time=time)
 
 @app.route('/video/<id>', methods = ["GET"])
 def video_page(id):
@@ -59,12 +57,7 @@ def video_api(id):
     jsondata = getvideo(id)
     return jsonify({'results': jsondata}),200
 
-@app.route('/api/trending/<page>', methods=["GET"])
-def trending_api(page):
-    jsondata = gettrending(page)
-    return jsonify({'results': jsondata, 'next_page': '/trending/{page}'.format(page=str(int(page)+1))}),200
-
-
-#if __name__ == "__main__":
-    # serve(app, host="127.0.0.1", port=8080)
-    #app.run(host="127.0.0.1", port=8080)
+@app.route('/api/trending/<time>/<page>', methods=["GET"])
+def trending_api(time, page):
+    jsondata = gettrending(time,page)
+    return jsonify({'results': jsondata, 'next_page': '/api/trending/{time}/{page}'.format(time=time,page=str(int(page)+1))}),200

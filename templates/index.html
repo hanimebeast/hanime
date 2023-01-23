@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 {% block title %}HanimeBeast{% endblock %}
 {% block content %}
-<h1>
-    <a href="/trending/0">Trending</a>
-</h1>
-<h1>API</h1>
-<h3>/api/trending/{page}</h3> - for visiting page
-<h3>/api/video/{id}</h3> - for getting detailed video page
-<br>
-<br>
+
+<table class="table bg-white my-2 border-secondary">
+<tr>
+    <td class="col">
+        /api/trending/{time}/{page}
+    </td>
+    <td class="col">
+        for visiting trending page.  {page} = int and {time} = day/week/month/year
+    </td>
+</tr>
+<tr>
+    <td class="col">/api/video/{id}</td>
+    <td class="col">for getting detailed video page</td>
+</tr>
+</table>
+
 {% endblock %}

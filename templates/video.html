@@ -1,27 +1,35 @@
 {% extends "base.html" %}
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}
 {% block content %}
-<div class="p-5 text-center bg-dark" style="background-image: url({{ video['poster_url'] }});
-background-repeat: no-repeat;
-background-attachment: scroll;
-background-position: center center;
-background-size: cover;">
-        <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="text-dark">
-                <img src={{ video['cover_url'] }} class="mx-auto" alt="">
-                <h1 class="mb-3">{{ video['name'] }}</h1>
-                <h4 class="mb-3">Views: {{ video['views'] }}</h4>
-                <p>{{ video['description']|safe }}</p>
-                <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                    {% for v in video['streams'][1:] %}
-                    <a href="{{ v['url'] }}" class="btn btn-secondary btn-lg"><i class="fa-solid fa-download"></i> {{
-                        v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
 
-                    {% endfor %}
+
+
+<div class="card mx-auto my-5" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src={{ video['cover_url'] }} alt={{ video['name'] }} class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ video['name'] }}</h5>
+                <p class="card-text">
+                    <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
+                </p>
+                <p class="card-text">
+                    {{ video['description']|safe }}
+                </p>
+                
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                        {% for v in video['streams'][1:] %}
+                        <a href="{{ v['url'] }}" class="btn btn-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
+                            v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
+
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-
-    
+    </div>
 </div>
 {% endblock %}

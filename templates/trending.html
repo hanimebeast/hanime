@@ -1,22 +1,42 @@
 {% extends "base.html" %}
-{% block title %}trending | HanimeBeast{% endblock %}
+{% block title %}Trending | HanimeBeast{% endblock %}
 {% block content %}
 
-
-<div class="row sm-6 gy-3 my-3">
-    {% for v in videos %}
-    <div class="col-sm-3">
-    <div class="card bg-dark text-white">
-        <a href="/video/{{ v['id'] }}"> <img src={{ v['cover_url'] }} class="card-img-top" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{ v['name'] }}</h5>
-                <p class="card-text">Views: {{ v['views'] }} </p>
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="m-5 navbar navbar-expand-lg">
+        <button class="btn-success btn btn-sm m-3">Trending : {{ time }}</button>
+        <div class="btn-group" role="group">
+        <a href="/trending/day/0" class="btn btn-dark btn-sm">Daily</a>
+        <a href="/trending/week/0" class="btn btn-dark btn-sm">Weekly</a>
+        <a href="/trending/month/0" class="btn btn-dark btn-sm">monthly</a>
+        <a href="/trending/year/0" class="btn btn-dark btn-sm">yearly</a>
+    </div>
+    </div>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for v in videos %}
+        <div class="col mb-5 ">
+            <div class="card h-100 bg-dark text-white shadow-5-strong">
+                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
+                        class="fa-solid fa-eye"></i>{{ v['views'] }}</div>
+                <img class="card-img-top" src={{ v['cover_url'] }} alt={{ v['name'] }} />
+                <div class="card-body p-4 ">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">{{ v['name'] }}</h5>
+                    </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-info" href="/video/{{ v['id'] }}"><i
+                                class="fa-solid fa-fire fa-xl"></i></a></div>
+                </div>
             </div>
-        </a>
+        </div>
+        {% endfor %}
     </div>
+    <div class="text-center">
+        <button onclick="history.back()" class="btn btn-white mx-2"><i class="fa-solid fa-backward"></i></button><a
+            href="{{ next_page }}" class="btn btn-white mx-2"><i class="fa-solid fa-forward"></i></a>
     </div>
-    {% endfor %}
+
 </div>
-<button onclick="history.back()" class="btn btn-success btn-lg"><i class="fa-solid fa-backward-step"></i></button>
-<a href="{{ next_page }}" class="btn btn-success btn-lg"><i class="fa-solid fa-forward-step"></i></a>
+
 {% endblock %}
