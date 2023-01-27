@@ -19,7 +19,7 @@ def gettrending(time,page):
     url = trending_url
     urldata = jsongen(url)
     for x in urldata["hentai_videos"]:
-        json_data = {'id': x['id'] , 'name' : x['name'], 'cover_url': x['cover_url'], 'views' : x['views'], 'link': '/api/video/{id}'.format(id=str(x['id']))}
+        json_data = {'id': x['id'] , 'name' : x['name'],'slug' : x['slug'], 'cover_url': x['cover_url'], 'views' : x['views'], 'link': '/api/video/{id}'.format(id=str(x['id']))}
         jsondata.append(json_data)
     return jsondata
 
