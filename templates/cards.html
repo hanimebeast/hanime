@@ -1,17 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Trending | HanimeBeast{% endblock %}
+{% block title %}{{category}} | HanimeBeast{% endblock %}
 {% block content %}
 
-<div class="container px-4 px-lg-5 mt-5">
+<div class="container px-4 px-lg-5 mt-5">    
     <div class="navbar navbar-expand-lg">
-        <button class="btn-success btn btn-sm m-3">Trending : {{ time }}</button>
-        <div class="btn-group" role="group">
-        <a href="/trending/day/0" class="btn btn-dark btn-sm">Daily</a>
-        <a href="/trending/week/0" class="btn btn-dark btn-sm">Weekly</a>
-        <a href="/trending/month/0" class="btn btn-dark btn-sm">monthly</a>
-        <a href="/trending/year/0" class="btn btn-dark btn-sm">yearly</a>
-    </div>
-    </div>
+        <button class="btn-success btn btn-sm m-3">Browse : {{ category }}</button></div>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         {% for v in videos %}
         <div class="col mb-5 ">
