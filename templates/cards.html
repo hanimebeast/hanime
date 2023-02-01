@@ -4,7 +4,30 @@
 
 <div class="container px-4 px-lg-5 mt-5">    
     <div class="navbar navbar-expand-lg">
-        <button class="btn-success btn btn-sm m-3">Browse : {{ category }}</button></div>
+        <style>
+            .dropdown:hover .dropdown-menu {
+              display: block;
+            }
+            </style>
+            
+            <script>
+            $('.dropdown').hover(function () {
+              $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            }, function () {
+              $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            });
+            </script>
+        <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Browse : {{ category }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for t in tags %}
+                <a class="dropdown-item" href="/browse/hentai-tags/{{t['text']}}/0">{{ t['text'] }}</a>
+            {% endfor %}
+            </div>
+          </div>
+    </div>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         {% for v in videos %}
         <div class="col mb-5 ">

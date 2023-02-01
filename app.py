@@ -85,8 +85,9 @@ def browse():
 @app.route('/browse/<type>/<category>/<page>', methods= ["GET"])
 def browse_category(type,category,page):
     videos = getbrowsevideos(type, category, page)
+    data  = getbrowse()
     next_page = '/browse/{type}/{category}/{page}'.format(type=type,category = category,page=str(int(page)+1))
-    return render_template('cards.html',videos = videos, next_page = next_page, category = category)
+    return render_template('cards.html',videos = videos, next_page = next_page, category = category,  tags = data['hentai_tags'])
 
 
 # api
