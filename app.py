@@ -3,11 +3,12 @@
 from flask import Flask, jsonify, render_template
 import requests
 import secrets
+from fake_useragent import UserAgent
 
 def jsongen(url):
     import requests
     import json
-    headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32)}
+    headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32),':authority': 'hanime.tv','User-Agent': UserAgent().random}
     res = requests.get(url, headers=headers)
     y = json.loads(res.text)
     return y
@@ -16,7 +17,7 @@ def jsongen(url):
 def gettrending(time,page):
     jsondata  = []
     page = page
-    trending_url = "https://hanime.tv/api/v8/browse-trending?time={time}&page={page}".format(time=time,page=str(page))
+    trending_url = "https://hanime.tv/api/v8/browse-trending?time={time}&page={page}&order_by=views&ordering=desc".format(time=time,page=str(page))
     url = trending_url
     urldata = jsongen(url)
     for x in urldata["hentai_videos"]:
@@ -51,7 +52,7 @@ def getbrowse():
     return data
     
 def getbrowsevideos(type,category,page):
-    browse_url  = f"https://hanime.tv/api/v8/browse/{type}/{category}?page={page}"
+    browse_url  = f"https://hanime.tv/api/v8/browse/{type}/{category}?page={page}&order_by=views&ordering=desc"
     browsedata = jsongen(browse_url)
     jsondata = []
     for x in browsedata["hentai_videos"]:
