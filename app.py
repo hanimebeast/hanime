@@ -8,7 +8,7 @@ from fake_useragent import UserAgent
 def jsongen(url):
     import requests
     import json
-    headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32),':authority': 'hanime.tv','User-Agent': UserAgent().random}
+    headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32),'User-Agent': UserAgent().random}
     res = requests.get(url, headers=headers)
     y = json.loads(res.text)
     return y
@@ -135,5 +135,4 @@ def browse_category_api(type,category,page):
 
 
 # if __name__ == "__main__":
-    # serve(app, host="127.0.0.1", port=8080)
-    # app.run(host="127.0.0.1", port=8080,debug=True)
+#     app.run(host="127.0.0.1", port=8080,debug=True)
