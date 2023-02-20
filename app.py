@@ -18,11 +18,11 @@ def jsongen(url):
     return y
 
 def log():
-    ip = request.remote_addr
+    ip = request.environ['REMOTE_ADDR']
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
     url = f"http://ip-api.com/json/{ip}"
-    data = jsongen(url)
+    data = request.path + "\n" + str(jsongen(url))
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
     requests.get(posturl)
 
