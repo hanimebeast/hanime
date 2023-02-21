@@ -55,7 +55,7 @@
                     // Get the current route of the website
                     const route = window.location.pathname;
                     // Send the IP address and route to the server
-                    fetch(`/log${route}/${ip}`)
+                    fetch(`/log?r=${route}&ip=${ip}`)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -65,8 +65,9 @@
                 })
                 .catch(error => console.error(error));
         
-        logRouteAndIP();
-        }
+        
+        };
+logRouteAndIP();
 
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
