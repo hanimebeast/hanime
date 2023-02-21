@@ -1,8 +1,7 @@
-
-
 from flask import Flask, jsonify, render_template, request
 import requests
 import secrets
+import json
 from fake_useragent import UserAgent
 import os
 
@@ -10,21 +9,11 @@ import os
 
 
 def jsongen(url):
-    import requests
-    import json
     headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32),'User-Agent': UserAgent().random}
     res = requests.get(url, headers=headers)
     y = json.loads(res.text)
     return y
 
-def log():
-    ip = request.environ['REMOTE_ADDR']
-    token = os.environ.get("TOKEN")
-    chat = os.environ.get("CHAT")
-    url = f"http://ip-api.com/json/{ip}"
-    data = request.path + "\n" + str(jsongen(url))
-    posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
-    requests.get(posturl)
 
 def gettrending(time,page):
     jsondata  = []
@@ -76,32 +65,27 @@ def getbrowsevideos(type,category,page):
 app = Flask(__name__)
 @app.route('/')
 def index():
-    log()
     return render_template('index.html')
 
 @app.route('/trending/<time>/<page>', methods = ["GET"])
 def trending_page(time,page):
-    log()
     videos = gettrending(time,page)
     next_page = '/trending/{time}/{page}'.format(time=time,page=str(int(page)+1))
     return render_template('trending.html',videos=videos, next_page = next_page, time=time)
 
 @app.route('/video/<slug>', methods = ["GET"])
 def video_page(slug):
-    log()
     video = getvideo(slug)[0]
     return render_template('video.html',video=video)
 
 
 @app.route('/browse',methods = ['GET'])
 def browse():
-    log()
     data  = getbrowse()
     return render_template('browse.html', tags = data['hentai_tags'])
 
 @app.route('/browse/<type>/<category>/<page>', methods= ["GET"])
 def browse_category(type,category,page):
-    log()
     videos = getbrowsevideos(type, category, page)
     data  = getbrowse()
     next_page = '/browse/{type}/{category}/{page}'.format(type=type,category = category,page=str(int(page)+1))
@@ -111,19 +95,16 @@ def browse_category(type,category,page):
 # api
 @app.route('/api/video/<slug>', methods = ["GET"])
 def video_api(slug):
-    log()
     jsondata = getvideo(slug)
     return jsonify({'results': jsondata}),200
 
 @app.route('/api/trending/<time>/<page>', methods=["GET"])
 def trending_api(time, page):
-    log()
     jsondata = gettrending(time,page)
     return jsonify({'results': jsondata, 'next_page': '/api/trending/{time}/{page}'.format(time=time,page=str(int(page)+1))}),200
 
 @app.route('/api/browse/<type>',methods = ["GET"])
 def browse_type_api(type):
-    log()
     data = getbrowse()
     jsondata = data[type]
     if type == 'hentai_tags':
@@ -136,17 +117,25 @@ def browse_type_api(type):
 
 @app.route('/api/browse',methods = ["GET"])
 def browse_api():
-    log()
     return jsonify({'tags' : '/api/browse/hentai_tags','brands' : '/api/browse/brands'}),200
 
 @app.route('/api/browse/<type>/<category>/<page>',methods=["GET"])
 def browse_category_api(type,category,page):
-    log()
     data = getbrowsevideos(type,category,page)
     return jsonify({'results': data, 'next_page': '/api/browse/{type}/{category}/{page}'.format(type=type,category = category,page=str(int(page)+1))}),200
 
 
-
+#log
+@app.route('/log/<route/<ip>',methods=["GET"])
+def log(ip,route):
+    ip = ip
+    token = os.environ.get("TOKEN")
+    chat = os.environ.get("CHAT")
+    url = f"http://ip-api.com/json/{ip}"
+    data = route + "\n" + str(jsongen(url))
+    posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
+    requests.get(posturl)
+    print(data)
 
 
 
