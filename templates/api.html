@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}HanimeBeast{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title">API Details</h2>
+                    <hr>
+                    <h3 class="card-subtitle mb-2 text-muted">API Routes:</h3>
+                    <li>/api/trending/{time}/{page}</li>
+                    <p>for visiting trending page. {page} = int and {time} = day/week/month/3_month/6_month/year
+                    </p>
+                    <li>/api/video/{slug/id}</li>
+                    <p>for getting detailed video page</p>
+                    <li>/api/browse</li>
+                    <p>
+                        for getting browse
+                    </p>
+                    <li>
+                        /api/browse/{type}/{category}/{page}
+                        <p>type = hentai-tags / brands ; category = category of type</p>
+                        <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

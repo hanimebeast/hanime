@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import requests
 import secrets
 import json
@@ -65,7 +65,11 @@ def getbrowsevideos(type,category,page):
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect("/trending/month/0")
+
+@app.route('/api')
+def api():
+    return render_template('api.html')
 
 @app.route('/trending/<time>/<page>', methods = ["GET"])
 def trending_page(time,page):
