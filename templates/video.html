@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block metatitle %}{{ video['name'] }}{% endblock metatitle %}
+{% block metadescription %}{{ video['description'] }}{% endblock metadescription %}
+{% block metakeywords %}{% for t in video['tags'] %} {{ t['name'], }}{% endfor %}  {% endblock metakeywords %}
+{% block metaimage %}{{ video['cover_url'] }}{% endblock metaimage %}
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}
 {% block content %}
 
@@ -10,7 +14,7 @@
 <div class="row">
 
     <div class="col-md-6">
-        <img class="img-fluid" src={{ video['cover_url'] }} alt="">
+        <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
     </div>
 
     <div class="col-md-6">
