@@ -1,43 +1,45 @@
 {% extends "base.html" %}
 {% block metatitle %}{{ video['name'] }}{% endblock metatitle %}
 {% block metadescription %}{{ video['description'] }}{% endblock metadescription %}
-{% block metakeywords %}{% for t in video['tags'] %} {{ t['name'], }}{% endfor %}  {% endblock metakeywords %}
+{% block metakeywords %}{% for t in video['tags'] %} {{ t['name'], }}{% endfor %} {% endblock metakeywords %}
 {% block metaimage %}{{ video['cover_url'] }}{% endblock metaimage %}
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}
 {% block content %}
 
 
 
-<div class="mx-auto bg-white p-5">
+<div class="mx-auto bg-white text-black p-5">
     <h1 class="my-4">{{ video['name'] }}</h1>
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-md-6">
-        <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
-    </div>
-
-    <div class="col-md-6">
-        <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
-            {% for t in video['tags'] %}
-            <a href="{{ t['link'] }}" class="btn btn-secondary btn-sm">{{ t['name'] }}</a>
-            {% endfor %}
+        <div class="col-md-6">
+            <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
         </div>
-        <p>
-            <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
-        </p>
-        <p>{{ video['description']|safe }}</p>
-        <h3 class="my-3">Downloads</h3>
-        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-            {% for v in video['streams'] %}
-            <a href="{{ v['url'] }}" class="btn btn-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
-                v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
 
-            {% endfor %}
+        <div class="col-md-6">
+            <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
+                {% for t in video['tags'] %}
+                <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
+                {% endfor %}
+            </div>
+            <p>
+                <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
+            </p>
+            <p>{{ video['description']|safe }}</p>
+            <h3 class="my-3">Downloads</h3>
+            <div class="alert alert-danger">Use VLC MEDIA PLAYER for streaming video.</div>
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                {% for v in video['streams'] %}
+                <a href="{{ v['url'] }}" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
+                    v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
+
+                {% endfor %}
+            </div>
+            
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 
 
@@ -57,8 +59,8 @@
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         {% for e in video['episodes'] %}
         <div class="col mb-5 ">
-            <div class="card h-100 bg-dark text-white shadow-5-strong">
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
+            <div class="card h-100 bg-black text-white shadow-5-strong">
+                <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
                         class="fa-solid fa-eye"></i>{{ e['views'] }}</div>
                 <img class="card-img-top" src={{ e['cover_url'] }} alt={{ e['name'] }} />
                 <div class="card-body p-4 ">
@@ -74,4 +76,6 @@
         </div>
         {% endfor %}
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}

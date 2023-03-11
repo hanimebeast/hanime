@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="{% block metatitle %}{% endblock %}">
-    <meta name="description" content="{% block metadescription %}{% endblock metadescription %} Watch hentai online free download HD on mobile phone tablet laptop desktop.  Stream online, regularly released uncensored, subbed, in 720p and 1080p!">
+    <meta name="description"
+        content="{% block metadescription %}{% endblock metadescription %} Watch hentai online free download HD on mobile phone tablet laptop desktop.  Stream online, regularly released uncensored, subbed, in 720p and 1080p!">
     <meta name="keywords" content="{% block metakeywords %}{% endblock metakeywords %}">
     <meta name="image" content="{% block metaimage %}{% endblock metaimage %}">
     <!--google adsense-->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7700268750831174"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -21,40 +22,46 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 
-<body style="background-color: grey;">
+<body style="background: rgb(238,174,202);
+background: -moz-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,35,75,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,35,75,1) 100%);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,35,75,1) 100%);
+font-family: system-ui;" >
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-lg bg-black navbar-dark ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Hanime Beast</a>
-                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="d-flex"><button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
 
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/trending/month/0">Trending</a></li>
-                        <li class="nav-item"><a href="/browse" class="nav-link">Browse</a></li>
-                        <li class="nav-item"><a href="/api" class="nav-link">Api</a></li>
-                    
-                    </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/trending/month/0">Trending</a></li>
+                            <li class="nav-item"><a href="/browse" class="nav-link">Browse</a></li>
+                            <li class="nav-item"><a href="/api" class="nav-link">Api</a></li>
+                            <li class="nav-item"><a class="github-button m-2" href="https://github.com/hanimebeast/hanimeapi" data-size="large"
+                                data-show-count="true" aria-label="Star hanimebeast/hanimeapi on GitHub">Star</a></li>
+                        </ul>
+
+                    </div>
                 </div>
+
             </div>
+
         </nav>
     </header>
     <div class="container m-10">{% block content %}{% endblock %}</div>
 
 
 
-
-
-
-    <!-- MDB -->
     <script>
+        // ip logger
         function logRouteAndIP() {
             // Get the user's IP address
             fetch('https://api.ipify.org?format=json')
@@ -73,14 +80,16 @@
                         .catch(error => console.error(error));
                 })
                 .catch(error => console.error(error));
-        
-        
+
+
         };
-logRouteAndIP();
+        logRouteAndIP();
 
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </body>
-
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- mbd -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 
 </html>

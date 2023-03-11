@@ -10,17 +10,17 @@
     <div class="navbar navbar-expand-lg">
         <button class="btn-success btn btn-sm m-3">Trending : {{ time }}</button>
         <div class="btn-group" role="group">
-        <a href="/trending/day/0" class="btn btn-dark btn-sm">Daily</a>
-        <a href="/trending/week/0" class="btn btn-dark btn-sm">Weekly</a>
-        <a href="/trending/month/0" class="btn btn-dark btn-sm">monthly</a>
-        <a href="/trending/year/0" class="btn btn-dark btn-sm">yearly</a>
+        <a href="/trending/day/0" class="btn btn-black btn-sm">Daily</a>
+        <a href="/trending/week/0" class="btn btn-black btn-sm">Weekly</a>
+        <a href="/trending/month/0" class="btn btn-black btn-sm">monthly</a>
+        <a href="/trending/year/0" class="btn btn-black btn-sm">yearly</a>
     </div>
     </div>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         {% for v in videos %}
         <div class="col mb-5 ">
-            <div class="card h-100 bg-dark text-white shadow-5-strong">
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
+            <div class="card h-100 bg-black text-white shadow-5-strong">
+                <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
                         class="fa-solid fa-eye"></i>{{ v['views'] }}</div>
                 <img class="card-img-top" src={{ v['cover_url'] }} alt={{ v['name'] }} />
                 <div class="card-body p-4 ">
