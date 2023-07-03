@@ -143,6 +143,13 @@ def log():
     requests.get(posturl)
     return "success!`"    
 
+hit = 18853
+
+@app.route('/hit', methods=["GET"])
+def hit_counter():
+    global hit
+    hit += 1
+    return jsonify({'hit': hit})
 
 
 
