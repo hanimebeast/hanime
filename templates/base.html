@@ -41,15 +41,7 @@ font-family: system-ui;" >
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<li class="nav-item"><button class="nav-link" id="hit-value">Loading...</button></li>
-
-    <script>
-        $(document).ready(function() {
-            $.get('/hit', function(data) {
-                $('#hit-value').text('Hit: ' + data.hit);
-            });
-        });
-    </script>
+                            <li class="nav-item"><button class="nav-link text-black bg-warning" id="hit-value">Loading...</button></li> 
                             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/trending/month/0">Trending</a></li>
                             <li class="nav-item"><a href="/browse" class="nav-link">Browse</a></li>
@@ -75,28 +67,37 @@ font-family: system-ui;" >
 
     <script>
         // ip logger
-        function logRouteAndIP() {
-            // Get the user's IP address
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    // Get the current route of the website
-                    const route = window.location.pathname;
-                    // Send the IP address and route to the server
-                    fetch(`/log?r=${route}&ip=${ip}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! Status: ${response.status}`);
-                            }
-                        })
-                        .catch(error => console.error(error));
-                })
-                .catch(error => console.error(error));
+       $(document).ready(function() {
+            // Function to get the hit value
+            function getHitValue() {
+                // Get the IP address
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const ip = data.ip;
+                        // Get the current route of the website
+                        const route = window.location.pathname;
+                        // Send the IP address and route to the server
+                        fetch(`/log?r=${route}&ip=${ip}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                // Get the hit value
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Update the hit value in the navbar
+                                $('#hit-value').text('Hit: ' + data.hit);
+                            })
+                            .catch(error => console.error(error));
+                    })
+                    .catch(error => console.error(error));
+            }
 
-
-        };
-        logRouteAndIP();
+            // Call getHitValue function on document load
+            getHitValue();
+        });
 
     </script>
 </body>
