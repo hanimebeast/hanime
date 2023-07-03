@@ -130,7 +130,7 @@ def browse_category_api(type,category,page):
 
 
 #log
-hit = 19855
+hit = 20477
 
 @app.route('/log',methods=["GET"])
 def log():
