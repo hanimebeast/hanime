@@ -139,7 +139,7 @@ def log():
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
     url = f"http://ip-api.com/json/{ip}"
-    data = "hit: "+ hit + "\n" + "route: " + route + "\n" + str(jsongen(url))
+    data = "hit: "+ str(hit) + "\n" + "route: " + route + "\n" + str(jsongen(url))
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
     requests.get(posturl)
     hit += 1
