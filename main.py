@@ -130,26 +130,23 @@ def browse_category_api(type,category,page):
 
 
 #log
+hit = 18855
 
 @app.route('/log',methods=["GET"])
 def log():
+    global hit
     ip = request.args.get("ip")
     route = request.args.get("r")
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
+    hit += 1
     url = f"http://ip-api.com/json/{ip}"
-    data = "route: " + route + "\n" + str(jsongen(url))
+    data = "hit: "+ str(hit)+ "\n" + "route: " + route + "\n" + str(jsongen(url))
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
     requests.get(posturl)
-    return "success!`"    
-
-hit = 18853
-
-@app.route('/hit', methods=["GET"])
-def hit_counter():
-    global hit
-    hit += 1
     return jsonify({'hit': hit})
+
+
 
 
 
