@@ -130,10 +130,11 @@ def browse_category_api(type,category,page):
 
 
 #log
-hit = 18846
+hit = 18850
 
 @app.route('/log',methods=["GET"])
 def log():
+    global hit
     ip = request.args.get("ip")
     route = request.args.get("r")
     token = os.environ.get("TOKEN")
