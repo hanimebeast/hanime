@@ -1,4 +1,5 @@
 # HanimeAPI
+[![Donate](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-orange.svg)](https://www.buymeacoffee.com/immodded)
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/hanimebeast/hanimeapi/blob/main/LICENSE)
 [![Telegram](https://img.shields.io/badge/Contact-%40immodded-blue.svg)](https://t.me/immodded)
