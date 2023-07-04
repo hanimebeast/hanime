@@ -31,7 +31,7 @@
             <div class="alert alert-danger">Use VLC MEDIA PLAYER for streaming video.</div>
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                 {% for v in video['streams'] %}
-                <a href="{{ v['url'] }}" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
+                <a href="https://gplinks.in/st?api=34e8dce41ebf28ed80792fb8e1b6c14c55322773&url={{ v['url'] }}" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
                     v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
 
                 {% endfor %}
