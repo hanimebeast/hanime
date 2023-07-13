@@ -41,7 +41,6 @@ font-family: system-ui;" >
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><button class="nav-link text-black bg-warning" id="hit-value">Loading...</button></li> 
                             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/trending/month/0">Trending</a></li>
                             <li class="nav-item"><a href="/browse" class="nav-link">Browse</a></li>
@@ -71,7 +70,7 @@ font-family: system-ui;" >
         // ip logger
        $(document).ready(function() {
             // Function to get the hit value
-            function getHitValue() {
+            function getlog() {
                 // Get the IP address
                 fetch('https://api.ipify.org?format=json')
                     .then(response => response.json())
@@ -88,17 +87,13 @@ font-family: system-ui;" >
                                 // Get the hit value
                                 return response.json();
                             })
-                            .then(data => {
-                                // Update the hit value in the navbar
-                                $('#hit-value').text('Hit: ' + data.hit);
-                            })
                             .catch(error => console.error(error));
                     })
                     .catch(error => console.error(error));
             }
 
             // Call getHitValue function on document load
-            getHitValue();
+            getlog();
         });
 
     </script>

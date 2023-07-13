@@ -9,7 +9,6 @@ import os
 def shorten_url(link):
     api_key = "34e8dce41ebf28ed80792fb8e1b6c14c55322773"
     url = f"https://gplinks.in/api?api={api_key}&url={link}"
-
     response = requests.get(url)
     result = response.json()
 
@@ -45,7 +44,7 @@ def getvideo(slug):
         tags.append(tag_data)
     streams = []
     for s in video_data['videos_manifest']['servers'][0]['streams']:
-        stream_data = {'width' : s['width'],'height' : s['height'],'size_mbs' : s['filesize_mbs'],'url' : shorten_url(s['url'])}
+        stream_data = {'width' : s['width'],'height' : s['height'],'size_mbs' : s['filesize_mbs'],'url' : shorten_url(s['url']),'link': s['url']}
         streams.append(stream_data)
     episodes = []
     for e in video_data['hentai_franchise_hentai_videos']:
@@ -138,21 +137,21 @@ def browse_category_api(type,category,page):
 
 
 #log
-hit = 99359
 
 @app.route('/log',methods=["GET"])
 def log():
-    global hit
     ip = request.args.get("ip")
     route = request.args.get("r")
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
-    hit += 1
     url = f"http://ip-api.com/json/{ip}"
-    data = "hit: "+ str(hit)+ "\n" + "route: " + route + "\n" + str(jsongen(url))
+    data = f"route:{route}\n{str(jsongen(url))}"
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
-    requests.get(posturl)
-    return jsonify({'hit': hit})
+    try:
+        requests.get(posturl)
+    except:
+        pass
+    return "logged!"
 
 
 
