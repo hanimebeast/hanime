@@ -23,8 +23,6 @@
     }
 </style>
 
-
-
 <div class="mx-auto bg-white text-black p-5">
     <h1 class="my-4">{{ video['name'] }}</h1>
 
@@ -46,33 +44,32 @@
             <p>{{ video['description']|safe }}</p>
             <div class="container mt-5">
                 <div class="card" id="video-container" style="display: none;">
-                <div class="card">
-            <div class="card-body">
-            <video id="live" autoplay controls>
-                <source src="" type="video/mp4" id="video-source">
-            </video>
+                    <div class="card-body">
+                        <video id="live" autoplay controls>
+                            <source src="" type="video/mp4" id="video-source">
+                        </video>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div></div>
             <h3 class="my-3">Stream</h3>
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                 {% for v in video['streams'] %}
-                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
-                    v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</button>
+                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{ v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</button>
                 {% endfor %}
                 <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
-
             </div>
-            
         </div>
 
     </div>
 </div>
 
+
+
 <script>
     function playVideo(link) {
         var video = document.getElementById('live');
         var videoSource = document.getElementById('video-source');
+        var videoContainer = document.getElementById('video-container');
         
         videoSource.setAttribute('src', link);
         video.load();
