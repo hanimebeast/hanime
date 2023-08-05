@@ -6,14 +6,6 @@ from fake_useragent import UserAgent
 import os
 
 
-def shorten_url(link):
-    api_key = "34e8dce41ebf28ed80792fb8e1b6c14c55322773"
-    url = f"https://gplinks.in/api?api={api_key}&url={link}"
-    response = requests.get(url)
-    result = response.json()
-
-
-    return result["shortenedUrl"]
 
 def jsongen(url):
     headers = {"X-Signature-Version": "web2","X-Signature": secrets.token_hex(32),'User-Agent': UserAgent().random}
@@ -29,7 +21,7 @@ def gettrending(time,page):
     url = trending_url
     urldata = jsongen(url)
     for x in urldata["hentai_videos"]:
-        json_data = {'id': x['id'] , 'name' : x['name'],'slug' : x['slug'],'url': shorten_url("https://hanime.onrender.com/video/"+x['slug']) , 'cover_url': x['cover_url'], 'views' : x['views'], 'link': f"/api/video/{x['slug']}"}
+        json_data = {'id': x['id'] , 'name' : x['name'],'slug' : x['slug'],'url': "/video/"+x['slug'] , 'cover_url': x['cover_url'], 'views' : x['views'], 'link': f"/api/video/{x['slug']}"}
         jsondata.append(json_data)
     return jsondata
 
@@ -44,7 +36,7 @@ def getvideo(slug):
         tags.append(tag_data)
     streams = []
     for s in video_data['videos_manifest']['servers'][0]['streams']:
-        stream_data = {'width' : s['width'],'height' : s['height'],'size_mbs' : s['filesize_mbs'],'url' : shorten_url(s['url']),'link': s['url']}
+        stream_data = {'width' : s['width'],'height' : s['height'],'size_mbs' : s['filesize_mbs'],'url' : s['url'],'link': s['url']}
         streams.append(stream_data)
     episodes = []
     for e in video_data['hentai_franchise_hentai_videos']:
