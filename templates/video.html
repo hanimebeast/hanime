@@ -6,6 +6,23 @@
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}
 {% block content %}
 
+<style>
+    .card {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .card-body {
+        position: relative;
+        padding: 0;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
 
 
 <div class="mx-auto bg-white text-black p-5">
@@ -27,13 +44,23 @@
                 <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
             </p>
             <p>{{ video['description']|safe }}</p>
+            <div class="container mt-5">
+            <div class="card">
+            <div class="card-body">
+            <video id="live" autoplay controls>
+                <source src="" type="video/mp4" id="video-source">
+            </video>
+            </div>
+            </div>
+            </div>
             <h3 class="my-3">Stream</h3>
             <div class="alert alert-danger">Use VLC MEDIA PLAYER for streaming video.</div>
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                 {% for v in video['streams'] %}
-                <a href="/play?link={{ v['url'] }}" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
-                    v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a>
-
+<!--                 <a href="/play?link={{ v['url'] }}" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
+                    v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</a> -->
+                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{
+                    v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</button>
                 {% endfor %}
                 <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
 
@@ -43,6 +70,18 @@
 
     </div>
 </div>
+
+<script>
+    function playVideo(link) {
+        var video = document.getElementById('live');
+        var videoSource = document.getElementById('video-source');
+        
+        videoSource.setAttribute('src', link);
+        video.load();
+        video.play();
+    }
+</script>
+
 
 <!-- ad -->
 <script src="https://static.adxadserv.com/js/adb.js" type="text/javascript" data-adxad-place="64a2e17b61d6e206af4edf6a" async></script><div id="64a2e17b61d6e206af4edf6a" data-width="300" data-height="250" data-output="html"></div>
