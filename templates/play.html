@@ -6,15 +6,33 @@
 {% block title %}HanimeBeast{% endblock %}
 {% block content %}
 
+<style>
+    .card {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .card-body {
+        position: relative;
+        padding: 0;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <video id="live" class="embed-responsive-item" autoplay controls>
+            <video id="live" autoplay controls>
                 <source src="{{ link }}" type="video/mp4">
             </video>
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}
