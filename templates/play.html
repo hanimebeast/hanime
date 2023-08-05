@@ -7,16 +7,14 @@
 {% block content %}
 
 <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Video Player</h5>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <video id="live" class="embed-responsive-item" autoplay controls>
-                        <source src="{{ link }}" type="video/mp4">
-                    </video>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <video id="live" class="embed-responsive-item" autoplay controls>
+                <source src="{{ link }}" type="video/mp4">
+            </video>
         </div>
+    </div>
 </div>
+
 
 {% endblock %}
