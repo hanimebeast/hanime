@@ -81,6 +81,10 @@ def video_page(slug):
     video = getvideo(slug)[0]
     return render_template('video.html',video=video)
 
+@app.route('/play')
+def m3u8():
+    link = request.args.get('link')
+    return render_template('play.html', link=link)
 
 @app.route('/browse',methods = ['GET'])
 def browse():
