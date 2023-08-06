@@ -49,15 +49,19 @@
                             <source src="" type="video/mp4" id="video-source">
                         </video>
                     </div>
+                        <div id="alertDiv" class="alert alert-warning">
+    If the video is stuck, tap on the play button again and wait for 2-10 seconds for it to load.
+                        </div>
                 </div>
             </div>
             <h3 class="my-3">Stream</h3>
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                 {% for v in video['streams'] %}
-                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{ v['height'] }} x {{ v['width'] }} - {{ v['size_mbs'] }}mbs</button>
+                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{ v['height'] }}</button>
                 {% endfor %}
-                <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
             </div>
+                <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
+                <a href="https://t.me/immodded" class="btn btn-success">Report</a>
         </div>
 
     </div>
