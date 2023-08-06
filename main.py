@@ -141,8 +141,8 @@ def log():
     request_url = request.url
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
-    url = f"http://ip-api.com/json/{ip}"
-    data = f"url:{request_url}\nroute:{route}\n{str(jsongen(url))}"
+    ip_log_url = f"http://ip-api.com/json/{ip}"
+    data = f"url:{request_url}\nroute:{route}\n{str(jsongen(ip_log_url))}"
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
     try:
         requests.get(posturl)
