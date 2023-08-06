@@ -24,28 +24,41 @@
 </style>
 
         <!-- Metadata card -->
-    <div class="card card-cascade wider">
-  <div class="view view-cascade overlay">
-    <img class="card-img-top" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
-    <a href="#!">
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
-  <div class="card-body card-body-cascade text-center pb-0">
-    <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
-    <h5 class="blue-text pb-2"><strong><i class="fa-solid fa-eye"></i> {{ video['views'] }}</strong></h5>
-    <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
-      {% for t in video['tags'] %}
-        <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
-      {% endfor %}
+    <div class="container">
+  <div class="row">
+    <!-- For desktop -->
+    <div class="col-md-6 d-none d-md-block">
+      <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
     </div>
-    <p class="card-text">{{ video['description']|safe }}</p>
-    <div class="card-footer text-center mt-4">
-      <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
-      <a href="https://t.me/immodded" class="btn btn-success">Report</a>
+
+    <!-- For mobile and tablet -->
+    <div class="col-md-6 col-12">
+      <div class="card">
+        <div class="view view-cascade overlay">
+          <img class="card-img-top" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body card-body-cascade text-center pb-0">
+          <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
+          <h5 class="blue-text pb-2"><strong><i class="fa-solid fa-eye"></i> {{ video['views'] }}</strong></h5>
+          <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
+            {% for t in video['tags'] %}
+              <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
+            {% endfor %}
+          </div>
+          <p class="card-text">{{ video['description']|safe }}</p>
+          <div class="card-footer text-center mt-4">
+            <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
+            <a href="https://t.me/immodded" class="btn btn-success">Report</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 
         
         <!-- Video card -->
