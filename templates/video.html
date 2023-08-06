@@ -24,30 +24,29 @@
 </style>
 
         <!-- Metadata card -->
-        <div class="card m-3">
-            <div class="card-body p-3">
-                <h1 class="my-4">{{ video['name'] }}</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
-                    </div>
-                    <div class="col-md-6 m-3">
-                        <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
-                            <!-- Tags buttons -->
-                            {% for t in video['tags'] %}
-                                <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
-                            {% endfor %}
-                        </div>
-                        <p>
-                            <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
-                        </p>
-                        <p>{{ video['description']|safe }}</p>
-                        <!-- Donation and report buttons -->
-                        <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
-                        <a href="https://t.me/immodded" class="btn btn-success">Report</a>
-                    </div>
-                </div>
-            </div>
+    <div class="card card-cascade wider">
+  <div class="view view-cascade overlay">
+    <img class="card-img-top" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+  <div class="card-body card-body-cascade text-center pb-0">
+    <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
+    <h5 class="blue-text pb-2"><strong><i class="fa-solid fa-eye"></i> {{ video['views'] }}</strong></h5>
+    <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
+      {% for t in video['tags'] %}
+        <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
+      {% endfor %}
+    </div>
+    <p class="card-text">{{ video['description']|safe }}</p>
+    <div class="card-footer text-center mt-4">
+      <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
+      <a href="https://t.me/immodded" class="btn btn-success">Report</a>
+    </div>
+  </div>
+</div>
+
         
         <!-- Video card -->
         <div class="card mt-5">
