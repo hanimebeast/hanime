@@ -2,7 +2,6 @@
 {% block metatitle %}{{ category }} | Hanime on HanimeAPI {% endblock metatitle %}
 {% block metadescription %}{% for t in tags %}{% if t['text'] == category %}{{ t['description'] }}{% endif %}{% endfor %}{% endblock metadescription %}
 {% block metakeywords %}{{ category }} , hentai, hentai api, hentai porn api, browse porn, browse, {% endblock metakeywords %}
-{% block metaimage %}{% for t in tags %}{% if t['text'] == category %}{{ t['tall_image_url'] }}{% endif %}{% endfor %}{% endblock metaimage %}
 {% block title %} {{category}} | HanimeBeast{% endblock %}
 {% block content %}
 

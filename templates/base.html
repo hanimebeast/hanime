@@ -9,7 +9,15 @@
     <meta name="description"
         content="{% block metadescription %}{% endblock metadescription %} Watch hentai online free download HD on mobile phone tablet laptop desktop.  Stream online, regularly released uncensored, subbed, in 720p and 1080p!">
     <meta name="keywords" content="{% block metakeywords %}{% endblock metakeywords %}">
-    <meta name="image" content="{% block metaimage %}{% endblock metaimage %}">
+    <meta property="og:image" content="" id="ogImage" />
+    <script>
+        // Get the current URL using window.location
+        var currentUrl = window.location.href;
+        
+        // Update the content of the og:image meta tag
+        var ogImageTag = document.getElementById('ogImage');
+        ogImageTag.content = "https://image.thum.io/get/maxAge/12/width/700/" + encodeURIComponent(currentUrl);
+    </script>
 <!-- google site verification -->
     <meta name="google-site-verification" content="mkqPm5yDkXOxdwoMuMdrGcy-GMg186gkqg25JOEQXNg" />
 <!-- jquery -->

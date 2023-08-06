@@ -2,7 +2,6 @@
 {% block metatitle %}{{ video['name'] }}{% endblock metatitle %}
 {% block metadescription %}{{ video['description'] }}{% endblock metadescription %}
 {% block metakeywords %}{% for t in video['tags'] %} {{ t['name'], }}{% endfor %} {% endblock metakeywords %}
-{% block metaimage %}{{ video['cover_url'] }}{% endblock metaimage %}
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}
 {% block content %}
 
