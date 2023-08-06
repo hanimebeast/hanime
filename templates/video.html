@@ -24,36 +24,27 @@
 </style>
 
         <!-- Metadata card -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-12">
-      <div class="card">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img class="card-img" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
-              <h5 class="blue-text"><strong><i class="fa-solid fa-eye"></i> {{ video['views'] }}</strong></h5>
-              <div class="btn-group" role="group" aria-label="horizontal button group">
-                {% for t in video['tags'] %}
-                  <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
-                {% endfor %}
-              </div>
-              <p class="card-text">{{ video['description']|safe }}</p>
-              <div class="card-footer">
-                <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
-                <a href="https://t.me/immodded" class="btn btn-success">Report</a>
-              </div>
-            </div>
-          </div>
+<div class="card mt-5">
+  <div class="row no-gutters">
+    <div class="col-md-6">
+      <img class="card-img" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body p-4 ">
+        <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
+        <h6 class="card-subtitle mb-2"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</h6>
+          {% for t in video['tags'] %}
+            <a href="{{ t['link'] }}" class="btn btn-dark btn-sm">{{ t['name'] }}</a>
+          {% endfor %}
+        <p class="card-text">{{ video['description']|safe }}</p>
+        <div class="card-footer">
+          <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning btn-sm">Donate</a>
+          <a href="https://t.me/immodded" class="btn btn-success btn-sm">Report</a>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 
         
