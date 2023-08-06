@@ -55,9 +55,9 @@
                 </div>
             </div>
             <h3 class="my-3">Stream</h3>
-            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
                 {% for v in video['streams'] %}
-                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-lg"><i class="fa-solid fa-play"></i> {{ v['height'] }}</button>
+                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-play"></i> {{ v['height'] }}</button>
                 {% endfor %}
             </div>
                 <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
