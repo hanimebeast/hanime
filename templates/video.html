@@ -24,48 +24,60 @@
 </style>
 
 <div class="mx-auto bg-white text-black p-5">
-    <h1 class="my-4">{{ video['name'] }}</h1>
-
-    <div class="row">
-
-        <div class="col-md-6">
-            <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
-        </div>
-
-        <div class="col-md-6 m-3">
-            <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
-                {% for t in video['tags'] %}
-                <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
-                {% endfor %}
+        <!-- Metadata card -->
+        <div class="card">
+            <div class="card-body">
+                <h1 class="my-4">{{ video['name'] }}</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-fluid" src={{ video['cover_url'] }} alt="{{ video['name'] }}">
+                    </div>
+                    <div class="col-md-6 m-3">
+                        <div class="btn-group-horizontal" role="group" aria-label="horizontal button group">
+                            <!-- Tags buttons -->
+                            {% for t in video['tags'] %}
+                                <a href="{{ t['link'] }}" class="btn btn-outline-black btn-sm">{{ t['name'] }}</a>
+                            {% endfor %}
+                        </div>
+                        <p>
+                            <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
+                        </p>
+                        <p>{{ video['description']|safe }}</p>
+                        <!-- Donation and report buttons -->
+                        <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
+                        <a href="https://t.me/immodded" class="btn btn-success">Report</a>
+                    </div>
+                </div>
             </div>
-            <p>
-                <small class="text-muted"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</small>
-            </p>
-            <p>{{ video['description']|safe }}</p>
-            <div class="container mt-5">
+        </div>
+        
+        <!-- Video card -->
+        <div class="card mt-5">
+            <div class="card-body">
+                <!-- Video content -->
                 <div class="card" id="video-container" style="display: none;">
                     <div class="card-body">
                         <video id="live" autoplay controls>
                             <source src="" type="video/mp4" id="video-source">
                         </video>
                     </div>
-                        <div id="alertDiv" class="alert alert-warning">
-    If the video is stuck, tap on the play button again and wait for 2-10 seconds for it to load.
-                        </div>
+                    <div id="alertDiv" class="alert alert-warning">
+                        If the video is stuck, tap on the play button again and wait for 2-10 seconds for it to load.
+                    </div>
+                </div>
+                <!-- Stream buttons and other video-related content -->
+                <h3 class="my-3">Stream</h3>
+                <div class="btn-group-horizontal m-3" role="group" aria-label="horizontal button group">
+                    <!-- Stream buttons -->
+                    {% for v in video['streams'][3:0:-1] %}
+                        <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm">
+                            <i class="fa-solid fa-play"></i> {{ v['height'] }}
+                        </button>
+                    {% endfor %}
                 </div>
             </div>
-            <h3 class="my-3">Stream</h3>
-            <div class="btn-group-horizontal m-3" role="group" aria-label="horizontal button group">
-                {% for v in video['streams'][3:0:-1] %}
-                <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-play"></i> {{ v['height'] }}</button>
-                {% endfor %}
-            </div>
-                <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning">Donate</a>
-                <a href="https://t.me/immodded" class="btn btn-success">Report</a>
         </div>
-
     </div>
-</div>
 
 
 
