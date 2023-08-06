@@ -146,10 +146,12 @@
                 <div class="btn-group-horizontal m-3" role="group" aria-label="horizontal button group">
                     <!-- Stream buttons -->
                     {% for v in video['streams'] %}
-                        <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm">
-                            <i class="fa-solid fa-play"></i> {{ v['height'] }}
-                        </button>
-                    {% endfor %}
+    {% if v['height'] != "1080" %}
+        <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm">
+            <i class="fa-solid fa-play"></i> {{ v['height'] }}
+        </button>
+    {% endif %}
+{% endfor %}
                 </div>
                 <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning btn-sm">Donate</a>
           <a href="https://t.me/immodded" class="btn btn-success btn-sm">Report</a>
