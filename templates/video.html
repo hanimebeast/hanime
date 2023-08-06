@@ -56,7 +56,7 @@
             </div>
             <h3 class="my-3">Stream</h3>
             <div class="btn-group-horizontal m-3" role="group" aria-label="horizontal button group">
-                {% for v in video['streams'] %}
+                {% for v in video['streams'][3:0:-1] %}
                 <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-play"></i> {{ v['height'] }}</button>
                 {% endfor %}
             </div>
