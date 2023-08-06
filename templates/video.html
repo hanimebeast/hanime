@@ -22,6 +22,34 @@
         height: auto;
     }
 </style>
+    <style>
+        #watchbtn {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        #watchbtn.watched {
+            background-color: #f00;
+            color: #fff;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
 
         <!-- Metadata card -->
 <div class="card mt-5">
@@ -38,13 +66,64 @@
           {% endfor %}
         <p class="card-text">{{ video['description']|safe }}</p>
         <div class="card-footer">
-          <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning btn-sm">Donate</a>
-          <a href="https://t.me/immodded" class="btn btn-success btn-sm">Report</a>
-        </div>
+    <button id="watchbtn" class="unwatched">Mark as watched</button>
+           </div>
       </div>
     </div>
   </div>
 </div>
+    <script>
+        const btn = document.getElementById('watchbtn');
+        const watchedItems = getWatchedItemsFromCookie();
+
+        btn.addEventListener('click', () => {
+            const currentRoute = window.location.href;
+
+            if (btn.classList.contains('unwatched')) {
+                watchedItems.push(currentRoute);
+                updateWatchedItemsInCookie(watchedItems);
+                btn.classList.remove('unwatched');
+                btn.classList.add('watched');
+                btn.innerText = 'Watched';
+            } else if (btn.classList.contains('watched')) {
+                const index = watchedItems.indexOf(currentRoute);
+                if (index !== -1) {
+                    watchedItems.splice(index, 1);
+                    updateWatchedItemsInCookie(watchedItems);
+                    btn.classList.remove('watched');
+                    btn.classList.add('unwatched');
+                    btn.innerText = 'Mark as watched';
+                }
+            }
+        });
+
+        function getWatchedItemsFromCookie() {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'watchedItems') {
+                    return value.split(',');
+                }
+            }
+            return [];
+        }
+
+        function updateWatchedItemsInCookie(items) {
+            document.cookie = `watchedItems=${items.join(',')}`;
+        }
+
+        // Check if the current route is in the list of watched items
+        const currentRoute = window.location.href;
+        if (watchedItems.includes(currentRoute)) {
+            btn.classList.remove('unwatched');
+            btn.classList.add('watched');
+            btn.innerText = 'Watched';
+        } else {
+            btn.classList.remove('watched');
+            btn.classList.add('unwatched');
+            btn.innerText = 'Mark as watched';
+        }
+    </script>
 
 
         
@@ -72,6 +151,8 @@
                         </button>
                     {% endfor %}
                 </div>
+                <a href="https://www.buymeacoffee.com/immodded" class="btn btn-warning btn-sm">Donate</a>
+          <a href="https://t.me/immodded" class="btn btn-success btn-sm">Report</a>
             </div>
         </div>
     </div>
