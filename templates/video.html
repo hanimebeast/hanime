@@ -145,7 +145,7 @@
                 <h3 class="my-3">Stream</h3>
                 <div class="btn-group-horizontal m-3" role="group" aria-label="horizontal button group">
                     <!-- Stream buttons -->
-                    {% for v in video['streams'][3:0:-1] %}
+                    {% for v in video['streams'] %}
                         <button onclick="playVideo('{{ v['url'] }}')" class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-play"></i> {{ v['height'] }}
                         </button>
