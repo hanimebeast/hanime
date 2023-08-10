@@ -74,39 +74,7 @@ font-family: system-ui;" >
 
     </div>
 
-    <script>
-        // ip logger
-       $(document).ready(function() {
-            // Function to get the hit value
-            function getlog() {
-                // Get the IP address
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const ip = data.ip;
-                        // Get the current route of the website
-                        const route = window.location.pathname;
-                        // Send the IP address and route to the server
-                        fetch(`/log?r=${route}&ip=${ip}`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(`HTTP error! Status: ${response.status}`);
-                                }
-                                // Get the hit value
-                                return response.json();
-                            })
-                            .catch(error => console.error(error));
-                    })
-                    .catch(error => console.error(error));
-            }
-
-            // Call getHitValue function on document load
-            getlog();
-        });
-
-    </script>
 </body>
-<!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- mbd -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
