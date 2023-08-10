@@ -4,45 +4,43 @@
 {% block metakeywords %}hentai, hentai api, hentai porn api{% endblock metakeywords %}
 {% block title %}HanimeBeast{% endblock %}
 {% block content %}
-    <h1>Watched Content List</h1>
-    <div id="watchedList">
-        <!-- Watched content items will be added here -->
+        <div id="watchedUrls" class="container mt-5">
+        <h2>Watched URLs</h2>
+        <ul id="watchedUrlsList"></ul>
+        <p id="noWatchedMsg" class="text-muted mt-3">No watched URLs found.</p>
     </div>
 
     <script>
         const watchedItems = getWatchedItemsFromCookie();
-
-        // Sort watchedItems in reverse chronological order
-        watchedItems.sort((a, b) => b.timestamp - a.timestamp);
-
-        const watchedList = document.getElementById('watchedList');
-
-        if (watchedItems.length === 0) {
-            watchedList.textContent = "No watched items available.";
-        } else {
-            const ul = document.createElement('ul');
-
-            // Populate the list of watched contents
-            watchedItems.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.textContent = item.url;
-                ul.appendChild(listItem);
-            });
-
-            watchedList.appendChild(ul);
-        }
+        const watchedUrlsList = document.getElementById('watchedUrlsList');
+        const noWatchedMsg = document.getElementById('noWatchedMsg');
 
         function getWatchedItemsFromCookie() {
             const cookies = document.cookie.split(';');
             for (const cookie of cookies) {
                 const [name, value] = cookie.trim().split('=');
                 if (name === 'watchedItems') {
-                    const urls = value.split(',');
-                    return urls.map(url => ({ url, timestamp: Date.now() }));
+                    return value.split(',');
                 }
             }
             return [];
         }
+
+        function displayWatchedUrls() {
+            if (watchedItems.length === 0) {
+                noWatchedMsg.style.display = 'block';
+            } else {
+                noWatchedMsg.style.display = 'none';
+                for (const url of watchedItems) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = url;
+                    watchedUrlsList.appendChild(listItem);
+                }
+            }
+        }
+
+        // Display watched URLs when the page loads
+        displayWatchedUrls();
     </script>
 
 
