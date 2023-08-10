@@ -136,13 +136,12 @@ def browse_category_api(type,category,page):
 
 @app.route('/log',methods=["GET"])
 def log():
-    ip = request.args.get("ip")
-    route = request.args.get("r")
+    ip = request.remote_addr
     request_url = request.url
     token = os.environ.get("TOKEN")
     chat = os.environ.get("CHAT")
     ip_log_url = f"http://ip-api.com/json/{ip}"
-    data = f"url:{request_url}\nroute:{route}\n{str(jsongen(ip_log_url))}"
+    data = f"url:{request_url}\n{str(jsongen(ip_log_url))}"
     posturl = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={data}"
     try:
         requests.get(posturl)
