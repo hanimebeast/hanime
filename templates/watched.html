@@ -6,76 +6,26 @@
 {% block content %}
 
 
-
-    <style>
- 
-        .watched-list {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Mobile Layout */
-        @media (max-width: 600px) {
-            .watched-list {
-                padding: 10px;
-            }
-        }
-    </style>
-    <div class="watched-list" id="watchedList">
-        <!-- Watched items will be added here dynamically using JavaScript -->
-    </div>
-
-    <button id="fetchButton">Fetch Watched</button>
+    
+    <ul id="watchedList">
+        <!-- This element will hold the list of watched items -->
+    </ul>
 
     <script>
+        // Retrieve watched items from the cookie and split them into an array
         const watchedItems = getWatchedItemsFromCookie();
-        const watchedList = document.getElementById('watchedList');
-        const fetchButton = document.getElementById('fetchButton');
 
-        // Function to dynamically create and add list items to the watched list
-        function displayWatchedItems() {
-            watchedList.innerHTML = ''; // Clear previous items
+        // Get the <ul> element to display the list
+        const watchedListElement = document.getElementById('watchedList');
 
-            if (watchedItems.length === 0) {
-                watchedList.innerHTML = '<p>No items watched yet.</p>';
-                return;
-            }
-
-            const ul = document.createElement('ul');
-            watchedItems.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                ul.appendChild(li);
-            });
-
-            watchedList.appendChild(ul);
-        }
-
-        // Call displayWatchedItems() when the "Fetch Watched" button is pressed
-        fetchButton.addEventListener('click', displayWatchedItems);
-
-        function getWatchedItemsFromCookie() {
-            const cookies = document.cookie.split(';');
-            for (const cookie of cookies) {
-                const [name, value] = cookie.trim().split('=');
-                if (name === 'watchedItems') {
-                    return value.split(',');
-                }
-            }
-            return [];
-        }
+        // Populate the list element with the watched items
+        watchedItems.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            watchedListElement.appendChild(li);
+        });
     </script>
+
 
 
 
