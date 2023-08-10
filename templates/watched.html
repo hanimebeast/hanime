@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block metatitle %}Hanime Api{% endblock metatitle %}
+{% block metadescription %}Enjoy your unlimited hentai & anime collection. We are the definitive source for the best curated 720p / 1080p HD hentai videos, viewable by mobile phone and tablet, for free.{% endblock metadescription %}
+{% block metakeywords %}hentai, hentai api, hentai porn api{% endblock metakeywords %}
+{% block title %}HanimeBeast{% endblock %}
+{% block content %}
+    <h1>Watched Content List</h1>
+    <div id="watchedList">
+        <!-- Watched content items will be added here -->
+    </div>
+
+    <script>
+        const watchedItems = getWatchedItemsFromCookie();
+
+        // Sort watchedItems in reverse chronological order
+        watchedItems.sort((a, b) => b.timestamp - a.timestamp);
+
+        const watchedList = document.getElementById('watchedList');
+
+        if (watchedItems.length === 0) {
+            watchedList.textContent = "No watched items available.";
+        } else {
+            const ul = document.createElement('ul');
+
+            // Populate the list of watched contents
+            watchedItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.url;
+                ul.appendChild(listItem);
+            });
+
+            watchedList.appendChild(ul);
+        }
+
+        function getWatchedItemsFromCookie() {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'watchedItems') {
+                    const urls = value.split(',');
+                    return urls.map(url => ({ url, timestamp: Date.now() }));
+                }
+            }
+            return [];
+        }
+    </script>
+
+
+
+{% endblock %}
