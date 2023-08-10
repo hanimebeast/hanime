@@ -131,11 +131,6 @@ def browse_category(type,category,page):
     return render_template('cards.html',videos = videos, next_page = next_page, category = category,  tags = data['hentai_tags'])
 
 
-@app.route('/watched')
-def watched():
-    return render_template('watched.html')
-
-
 # api
 @app.route('/api/video/<slug>', methods = ["GET"])
 def video_api(slug):
