@@ -4,7 +4,11 @@
 {% block metakeywords %}hentai, hentai api, hentai porn api{% endblock metakeywords %}
 {% block title %}HanimeBeast{% endblock %}
 {% block content %}
-<style>
+
+
+
+    <style>
+ 
         .watched-list {
             background-color: #333;
             color: white;
@@ -28,15 +32,18 @@
             }
         }
     </style>
-
     <div class="watched-list" id="watchedList">
         <!-- Watched items will be added here dynamically using JavaScript -->
     </div>
 
+    <button id="fetchButton">Fetch Watched</button>
+
     <script>
         const watchedItems = getWatchedItemsFromCookie();
         const watchedList = document.getElementById('watchedList');
+        const fetchButton = document.getElementById('fetchButton');
 
+        // Function to dynamically create and add list items to the watched list
         function displayWatchedItems() {
             watchedList.innerHTML = ''; // Clear previous items
 
@@ -55,6 +62,9 @@
             watchedList.appendChild(ul);
         }
 
+        // Call displayWatchedItems() when the "Fetch Watched" button is pressed
+        fetchButton.addEventListener('click', displayWatchedItems);
+
         function getWatchedItemsFromCookie() {
             const cookies = document.cookie.split(';');
             for (const cookie of cookies) {
@@ -65,8 +75,6 @@
             }
             return [];
         }
-
-        displayWatchedItems();
     </script>
 
 
