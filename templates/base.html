@@ -87,6 +87,57 @@ font-family: system-ui;" >
 
     </div>
 
+
+    <style>
+
+        .floating-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-button {
+            background-color: #111;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            animation: neon-glow 2s infinite alternate;
+        }
+
+        @keyframes neon-glow {
+            0% {
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            }
+            100% {
+                box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+            }
+        }
+    </style>
+    
+    <div class="floating-buttons">
+        <button class="floating-button"><a href="/trending/month/0" class="text-white neon"><i class="fa-solid fa-arrow-trend-up"></i></a></button>
+        <button class="floating-button"><a href="/browse" class="text-white neon"><i class="fa-brands fa-safari"></i></a></button>
+    </div>
+   
+
+
+
+
+
+
+
+
+    
     
 <footer class="bg-black text-white text-center py-3 mt-3" style=" width: 100%;">
         Made with <span class="text-danger neon"><a href="https://t.me/immodded" target="_blank">&hearts;</a></span> by <a href="https://github.com/hanimebeast/hanimeapi" class="text-white neon" target="_blank">HanimeBeast</a> &copy; <script>document.write(new Date().getFullYear())</script>
