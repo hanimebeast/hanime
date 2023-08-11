@@ -30,7 +30,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
     <title>{% block title %}{% endblock %} HANIME BEAST</title>
 </head>
-
+<style>
+        @keyframes neonGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+            }
+            50% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
+            }
+        }
+        
+        .neon {
+            animation: neonGlow 1.5s infinite alternate;
+        }
+    </style>
 <body style="background: rgb(238,174,202);
 background: -moz-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,35,75,1) 100%);
 background: -webkit-radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(0,35,75,1) 100%);
@@ -76,7 +89,7 @@ font-family: system-ui;" >
 
     
 <footer class="bg-black text-white text-center py-3 mt-3" style=" width: 100%;">
-        Made with <span class="text-danger">&hearts;</span> by <a href="https://github.com/hanimebeast/hanimeapi" class="text-white" target="_blank">HanimeBeast</a> &copy; <script>document.write(new Date().getFullYear())</script>
+        Made with <span class="text-danger"><a href="https://t.me/immodded" target="_blank">&hearts;</a></span> by <a href="https://github.com/hanimebeast/hanimeapi" class="text-white neon" target="_blank">HanimeBeast</a> &copy; <script>document.write(new Date().getFullYear())</script>
     </footer>
 </body>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
