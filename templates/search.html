@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block metatitle %}Search | hantai on HanimeAPI{% endblock metatitle %}
+{% block metadescription %}Trending Free Hentai Video Streams Online in 720p, 1080p HD{% endblock metadescription %}
+{% block metakeywords %} {% for v in videos %} {{ v['name'] }} , {% endfor %}  {% endblock metakeywords %}
+{% block title %}Search | HanimeBeast{% endblock %}
+{% block content %}
+
+{% if videos == [] %}
+<div class="card bg-black text-white my-5 p-4">
+    <h1 class="text-center my-5 neon">Officer, I swear she said she was 18.</h1>
+    <form method="post" action="/search" class="d-flex">
+        <input type="text" name="search_query" class="form-control" placeholder="Yes!!! mmm...Onii chan .....">
+        <button type="submit" class="btn btn-outline-success ml-2">Search</button>
+    </form>
+</div>
+
+
+
+{% else %}
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="navbar navbar-expand-lg">
+        <button class="btn-success btn btn-sm m-3">Search : {{ query }}</button>
+    </div>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for v in videos %}
+        <div class="col mb-5 ">
+            <div class="card h-100 bg-black text-white shadow-5-strong">
+                <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><i
+                        class="fa-solid fa-eye"></i>{{ v['views'] }}</div>
+                <img class="card-img-top" src={{ v['cover_url'] }} alt={{ v['name'] }} />
+                <div class="card-body p-4 ">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">{{ v['name'] }}</h5>
+                    </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-info" href="{{ v['url'] }}"><i
+                                class="fa-solid fa-fire fa-xl"></i></a></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <button onclick="history.back()" class="btn btn-white mx-2"><i class="fa-solid fa-backward"></i></button><a
+            href="{{ next_page }}" class="btn btn-white mx-2"><i class="fa-solid fa-forward"></i></a>
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

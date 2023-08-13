@@ -71,6 +71,34 @@ def getbrowsevideos(type,category,page):
         jsondata.append(json_data)
     return jsondata
 
+def getsearch(query, page):
+    res = {
+        "search_text": query,
+        "tags":
+            [],
+        "brands":
+            [],
+        "blacklist":
+            [],
+        "order_by": 
+            [],
+        "ordering": 
+            [],
+        "page": page,
+    }
+    headers = {
+        "Content-Type": "application/json; charset=utf-8"
+    }
+    x = requests.post("https://search.htv-services.com", headers=headers, json=res)
+    data = x.json()
+    videos = json.loads(data['hits'])
+    total_pages = data['nbPages']
+    data = {'total_pages':total_pages,'videos':videos}
+    jsondata = []
+    for x in data["videos"]:
+        json_data = {'id': x['id'] , 'name' : x['name'],'slug' : x['slug'],'url': "/video/"+x['slug'], 'cover_url': x['cover_url'], 'views' : x['views'], 'link': f"/api/video/{x['slug']}"}
+        jsondata.append(json_data)
+    return jsondata
 
 app = Flask(__name__)
 @app.route('/')
@@ -79,6 +107,22 @@ def index():
     request_url = request.url
     logger(ip_addr,request_url)
     return redirect("/trending/month/0")
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        search_query = request.form['search_query']
+        redirect_url = url_for('search', query=search_query, page=0)
+        return redirect(redirect_url)
+    query = request.args.get('query')
+    page = request.args.get('page', default=0, type=int)
+    ip_addr = request.remote_addr
+    request_url = request.url
+    logger(ip_addr,request_url)
+    videos = getsearch(query,page)
+    next_page = f'/search?query={query}&page={int(page)+1}'
+    return render_template('search.html',videos=videos, next_page = next_page, query = query)
+
 
 @app.route('/api')
 def api():
@@ -184,4 +228,4 @@ def browse_category_api(type,category,page):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0",port="8080")
