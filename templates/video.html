@@ -60,8 +60,17 @@
       <div class="card-body p-4 ">
         <h4 class="card-title"><strong>{{ video['name'] }}</strong></h4>
         <h6 class="card-subtitle mb-2"><i class="fa-solid fa-eye"></i> {{ video['views'] }}</h6>
+
+        <div class="d-flex justify-content-start align-items-center mb-3">
+            <a href="https://api.whatsapp.com/send?text={{ request.url }}" class="btn btn-dark btn-sm m-1"><i class="fa-brands fa-whatsapp fa-lg"></i></a>
+            <a href="https://facebook.com/share.php?u={{ request.url }}" class="btn btn-dark btn-sm m-1"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com/intent/tweet?url={{ request.url }}" class="btn btn-dark btn-sm m-1"><i class="fa-brands fa-twitter fa-lg"></i></a>
+            <a href="https://t.me/share/url?url={{ request.url }}" class="btn btn-dark btn-sm m-1"><i class="fa-brands fa-telegram"></i></a>
+        
+        
+        </div>
           {% for t in video['tags'] %}
-            <a href="{{ t['link'] }}" class="btn btn-dark btn-sm">{{ t['name'] }}</a>
+            <a href="{{ t['link'] }}" class="btn btn-dark btn-sm m-1">{{ t['name'] }}</a>
           {% endfor %}
         <p class="card-text">{{ video['description']|safe }}</p>
         <div class="card-footer">
