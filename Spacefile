@@ -1,0 +1,10 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: hanimeapi
+    src: ./
+    engine: python3.9
+    public: true
+    run: gunicorn main:app
+    commands:
+      - pip install -r requirements.txt
