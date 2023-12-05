@@ -1,5 +1,4 @@
-[![live 1](https://img.shields.io/badge/Live-1-green.svg)](https://hanime.onrender.com)
-[![live 2](https://img.shields.io/badge/Live-2-green.svg)](https://hanimeapi-1-g8477995.deta.app/)
+
 
 
 # HanimeAPI
