@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block metatitle %}{{ video['name'] }}{% endblock metatitle %}
+{% block ogtitle %}{{ video['name'] }}{% endblock ogtitle %}
 {% block metadescription %}{{ video['description'] }}{% endblock metadescription %}
 {% block metakeywords %}{% for t in video['tags'] %} {{ t['name'], }}{% endfor %} {% endblock metakeywords %}
 {% block title %}{{ video['name'] }}| HanimeBeast{% endblock %}

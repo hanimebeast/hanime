@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block metatitle %}{{ category }} | Hanime on HanimeAPI {% endblock metatitle %}
+{% block metatitle %}{{ category }} | Hanime on HanimeBeast {% endblock metatitle %}
+{% block ogtitle %}{{ category }} | Hanime on HanimeBeast {% endblock ogtitle %}
 {% block metadescription %}{% for t in tags %}{% if t['text'] == category %}{{ t['description'] }}{% endif %}{% endfor %}{% endblock metadescription %}
 {% block metakeywords %}{{ category }} , hentai, hentai api, hentai porn api, browse porn, browse, {% endblock metakeywords %}
 {% block title %} {{category}} | HanimeBeast{% endblock %}
