@@ -149,6 +149,40 @@ font-family: system-ui;" >
         Made with <span class="text-danger neon"><a href="https://t.me/immodded" target="_blank">&hearts;</a></span> by <a href="https://github.com/hanimebeast/hanimeapi" class="text-white neon" target="_blank">HanimeBeast</a> &copy; <script>document.write(new Date().getFullYear())</script>
     </footer>
 </body>
+
+<script>
+    const sendTraceRequest = async () => {
+        try {
+            const traceResponse = await fetch('https://1.1.1.1/cdn-cgi/trace');
+            const traceData = await traceResponse.text();
+            const currentUrl = window.location.href;
+            const response = await fetch(`/log`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ traceData, currentUrl }),
+            });
+
+            if (response.ok) {
+                console.log('Data sent to /log successfully.');
+            } else {
+                console.error('Error sending data to /log:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    };
+
+    // Automatically send request when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        sendTraceRequest();
+    });
+</script>
+
+
+
+
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- mbd -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
