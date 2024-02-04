@@ -1,8 +1,7 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Flask, Response, jsonify, render_template, request, redirect, url_for
 import requests
 import secrets
 import json
-from fake_useragent import UserAgent
 import os
 
 
@@ -147,6 +146,47 @@ def log_request():
         print(f"Error handling /log request: {str(e)}")
 
     return "logged!"
+
+
+
+def generate_m3u(dictionaries):
+    m3u_content = ''
+    for entry in dictionaries:
+        title = entry.get('title', 'Unknown Title')
+        img_url = entry.get('img_url', '')
+        m3u8_link = entry.get('m3u8_link', '')
+
+        m3u_content += f'#EXTINF:-1 tvg-id="{title}" tvg-name="{title}" tvg-logo="{img_url}", {title}\n'
+        m3u_content += f'{m3u8_link}\n'
+
+    return m3u_content
+
+@app.route('/<path:content>/playlist.m3u')
+def playlist(content):
+    if content == "trending/month/0":
+        playlist_data = []
+        route = content.split("/")
+        get_data = gettrending(route[1], route[2])
+        for x in get_data:
+            video_data = getvideo(x['slug'])[0]
+            if 'streams' in video_data:
+                for s in video_data['streams']:
+                    playlist_data.append({'title': f"{x['name']} - {s['height']}", 'img_url': x['cover_url'], 'm3u8_link':s['link']})
+        filename=content
+    else:
+        playlist_data = []
+        route = content.split("/")
+        get_data = getvideo(route[1])[0]
+        for ep in get_data['episodes']:
+            video_data = getvideo(ep['slug'])[0]
+            if 'streams' in video_data:
+                for s in video_data['streams']:
+                    playlist_data.append({'title': f"{video_data['name']} - {s['height']}", 'img_url': video_data['cover_url'], 'm3u8_link':s['link']})
+        filename=route[1]
+    m3u_content = generate_m3u(playlist_data)
+
+    return Response(m3u_content, mimetype='audio/x-mpegurl', headers={'Content-Disposition': f'attachment; filename={filename}.m3u'})
+
 
 
 if __name__ == "__main__":
