@@ -171,7 +171,7 @@ def playlist(content):
             video_data = getvideo(x['slug'])[0]
             if 'streams' in video_data:
                 for s in video_data['streams']:
-                    playlist_data.append({'title': f"{x['name']} - {s['height']}", 'img_url': x['cover_url'], 'm3u8_link':s['link']})
+                    playlist_data.append({'title': f"{x['name']} - {s['height']} - @hanimebeast", 'img_url': x['cover_url'], 'm3u8_link':s['link']})
         filename=content
     else:
         playlist_data = []
@@ -181,7 +181,7 @@ def playlist(content):
             video_data = getvideo(ep['slug'])[0]
             if 'streams' in video_data:
                 for s in video_data['streams']:
-                    playlist_data.append({'title': f"{video_data['name']} - {s['height']}", 'img_url': video_data['cover_url'], 'm3u8_link':s['link']})
+                    playlist_data.append({'title': f"{video_data['name']} - {s['height']} - @hanimebeast", 'img_url': video_data['cover_url'], 'm3u8_link':s['link']})
         filename=route[1]
     m3u_content = generate_m3u(playlist_data)
 
