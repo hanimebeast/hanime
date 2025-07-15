@@ -10,8 +10,6 @@
 ![Forks](https://img.shields.io/github/forks/hanimebeast/hanimeapi?style=social)
 
 
-## support this project
-https://www.buymeacoffee.com/immodded
 
 ## License
 
